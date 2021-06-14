@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cita Vacunacion</title>
+    
+    <link rel="stylesheet" href="formulario.css">
+
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+</head>
+<body style="background-color: #18A0FB;">
+    
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="background-color: #AD0000;">
+                    <h2 id="heading">Agenda tu cita de Vacunaci&Oacute;n</h2>
+            
+                    <form id="msform">
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li class="active" id="account"><strong>Personal</strong></li>
+                            <li id="personal"><strong>Contactos</strong></li>
+                            <li id="payment"><strong>Ubicaci&oacute;n</strong></li>
+                            <li id="confirm"><strong>Finish</strong></li>
+                        </ul>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div> <br> <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="fs-title">Informaci&oacute;n Personal</h2>
+                                    </div>
+                                    <!-- <div class="col-5">
+                                        <h2 class="steps">Step 1 - 4</h2>
+                                    </div> -->
+                                    <br>
+                                    <br>
+                                    <br>
+                                </div> 
+                                <label class="fieldlabels">Documento de Identificaci&oacute;n: </label><br>
+                                <input type="text" id="id_persona" name="id_persona" placeholder="000-0000000-0" /><br> 
+
+                                <label class="fieldlabels">Nombre Completo: </label><br>
+                                 <input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Brayan Muñoz V." /><br>
+
+                                  <label class="fieldlabels">Fecha de nacimiento: </label><br>
+                                  <input type="date" id="fechaNacimiento" name="fechaNacimiento"
+                                  value="2018-07-22"
+                                  min="1900-01-01" max="2021-12-31"><br> 
+
+                                   <label class="fieldlabels">Sexo: </label><br>
+                                   <select id="sexoPersona" name="sexoPersona">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                  </select>
+
+                            </div> <input type="button" name="next" class="next action-button" value="Siguiente" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card" >
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="fs-title">Contactos:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <!-- <h2 class="steps">Step 2 - 4</h2> -->
+                                    </div>
+                                    <br>
+                                </div> <label class="fieldlabels">Correo Electr&oacute;nico:</label><br>
+                                 <input type="email" id="emailPersona" name="emailPersona" placeholder="brayanmnz@hotmail.com" /><br>
+
+                                 <label class="fieldlabels">Tel&eacute;fono:</label><br>
+                                 <input type="tel" id="telefonoPersona" name="telefonoPersona" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="000-000-0000" required><br> 
+
+                                 <label class="fieldlabels">M&oacute;vil:</label><br>
+                                 <input type="tel" id="movilPersona" name="movilPersona" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="000-000-0000" required><br> 
+
+                                <hr class="solid">
+                                <div class="col-12">
+                                    <h2 class="fs-title">Contacto de Emergencia</h2>
+                                </div>
+                                  <label class="fieldlabels">Nombre Completo:</label> <br>
+                                  <input type="text" name="nombreContacto" id="nombreContacto" placeholder="Brayan Muñoz" /><br>
+
+                                  <label class="fieldlabels">Tel&eacute;fono:</label><br>
+                                 <input type="tel" id="telefonoContacto" name="telefonoContacto" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="000-000-0000" required><br> 
+
+                            </div> <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="fs-title">Ubicaci&oacute;n</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <!-- <h2 class="steps">Step 3 - 4</h2> -->
+                                    </div>
+                                </div>
+                                 <label class="fieldlabels">Provincia:</label> <br>
+                                 <input list="europe-countries" placeholder="Seleccione su Provincia">
+                                    <datalist id="europe-countries">
+                                    <option>Russia</option>
+                                    <option>Germany</option>
+                                   
+                                    </datalist><br>
+
+                                    <label class="fieldlabels">Municipio:</label> <br>
+                                    <input list="europe-countries" placeholder="Seleccione su Municipio">
+                                    <datalist id="europe-countries">
+                                    <option>Russia</option>
+                                    <option>Germany</option>
+                                      
+                                    </datalist> <br>
+                                       
+                                    <label class="fieldlabels">Sector:</label> <br>
+                                    <input list="europe-countries" placeholder="Seleccione su Municipio">
+                                    <datalist id="europe-countries">
+                                    <option>Russia</option>
+                                    <option>Germany</option>
+                                         
+                                    </datalist> <br>
+
+                                    <label class="fieldlabels">Seleccionar Ubicaci&oacute;n:</label><br>
+                                    <button type="submit" id="buttonEnviar" name="next" class="submit" value="Enviar"></button>  
+                                 
+                                 <!-- <input type="file" name="pic" accept="image/*"> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*">
+                             -->
+                                </div> 
+                            
+                            <input type="button" name="next" class="next action-button" value="Enviar" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">Finish:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <!-- <h2 class="steps">Step 4 - 4</h2> -->
+                                    </div>
+                                </div> <br><br>
+                                <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
+                                <div class="row justify-content-center">
+                                    <!-- <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div> -->
+                                </div> <br><br>
+                                <div class="row justify-content-center">
+                                    <div class="col-7 text-center">
+                                        <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+$(document).ready(function(){
+
+var current_fs, next_fs, previous_fs; //fieldsets
+var opacity;
+var current = 1;
+var steps = $("fieldset").length;
+
+setProgressBar(current);
+
+$(".next").click(function(){
+
+current_fs = $(this).parent();
+next_fs = $(this).parent().next();
+
+//Add Class Active
+$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+//show the next fieldset
+next_fs.show();
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+next_fs.css({'opacity': opacity});
+},
+duration: 500
+});
+setProgressBar(++current);
+});
+
+$(".previous").click(function(){
+
+current_fs = $(this).parent();
+previous_fs = $(this).parent().prev();
+
+//Remove class active
+$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+//show the previous fieldset
+previous_fs.show();
+
+//hide the current fieldset with style
+current_fs.animate({opacity: 0}, {
+step: function(now) {
+// for making fielset appear animation
+opacity = 1 - now;
+
+current_fs.css({
+'display': 'none',
+'position': 'relative'
+});
+previous_fs.css({'opacity': opacity});
+},
+duration: 500
+});
+setProgressBar(--current);
+});
+
+function setProgressBar(curStep){
+var percent = parseFloat(100 / steps) * curStep;
+percent = percent.toFixed();
+$(".progress-bar")
+.css("width",percent+"%")
+}
+
+$(".submit").click(function(){
+return false;
+})
+
+});
+</script>
+
+
+</body>
+</html>
