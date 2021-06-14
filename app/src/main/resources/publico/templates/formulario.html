@@ -55,7 +55,7 @@
 
                                   <label class="fieldlabels">Fecha de nacimiento: </label><br>
                                   <input type="date" id="fechaNacimiento" name="fechaNacimiento"
-                                  value="2018-07-22"
+                                  value="2000-01-01"
                                   min="1900-01-01" max="2021-12-31"><br> 
 
                                    <label class="fieldlabels">Sexo: </label><br>
@@ -108,31 +108,32 @@
                                     </div>
                                 </div>
                                  <label class="fieldlabels">Provincia:</label> <br>
-                                 <input list="europe-countries" placeholder="Seleccione su Provincia">
-                                    <datalist id="europe-countries">
-                                    <option>Russia</option>
-                                    <option>Germany</option>
+                                 <input id="provincia" list="provincias" placeholder="Seleccione su Provincia">
+                                    <datalist id="provincias">
+                                    <option>Santiago de los Caballeros</option>
+                                    <option>Santo Domingo</option>
                                    
                                     </datalist><br>
 
                                     <label class="fieldlabels">Municipio:</label> <br>
-                                    <input list="europe-countries" placeholder="Seleccione su Municipio">
-                                    <datalist id="europe-countries">
-                                    <option>Russia</option>
-                                    <option>Germany</option>
+                                    <input id="municipio" list="municipios" placeholder="Seleccione su Municipio">
+                                    <datalist id="municipios">
+                                    <option>Santiago</option>
+                                    <option>Cerros de Gurabo</option>
                                       
                                     </datalist> <br>
                                        
                                     <label class="fieldlabels">Sector:</label> <br>
-                                    <input list="europe-countries" placeholder="Seleccione su Municipio">
-                                    <datalist id="europe-countries">
-                                    <option>Russia</option>
-                                    <option>Germany</option>
+                                    <input id="sector" list="sectores" placeholder="Seleccione su Municipio">
+                                    <datalist id="sectores">
+                                    <option>Barrio los santos</option>
+                                    <option>No se que poner</option>
                                          
                                     </datalist> <br>
 
                                     <label class="fieldlabels">Seleccionar Ubicaci&oacute;n:</label><br>
-                                    <button type="submit" id="buttonEnviar" name="next" class="submit" value="Enviar"></button>  
+                                    
+                                    <button id="sendButtonCreate" class="btn btn--radius-2 btn--blue text-black" >Ubicaci&oacute;n</button> 
                                  
                                  <!-- <input type="file" name="pic" accept="image/*"> <label class="fieldlabels">Upload Signature Photo:</label> <input type="file" name="pic" accept="image/*">
                              -->
@@ -247,6 +248,71 @@ return false;
 });
 </script>
 
+
+
+<script>
+       /*
+        let form = {
+          "name": "gomez",
+          "lastName": "1",
+          "area": "1",
+          "nivelEscolar": "Básico",
+          "user": "admin",
+          "latitude": 19.4436952,
+          "longitude": -70.68114969999999,
+          "photo": "foto"
+        };
+         */
+
+         if (document.getElementById("sendButtonCreate") != null) {
+      document.getElementById("sendButtonCreate").addEventListener("click",function (event) {
+        event.preventDefault();
+
+
+      let form  = {
+    "descripcion_Formulario": "Probando desde cliente",
+    "dni_persona": document.getElementById("id_persona").value,
+    "nombreCompleto_persona": document.getElementById("nombreCompleto").value,
+    "fechaNacimiento_persona": document.getElementById("fechaNacimiento").value,
+    "sexo_persona": document.getElementById("sexoPersona").value,
+    "email_contacto": document.getElementById("emailPersona").value,
+    "telefono_contacto": document.getElementById("telefonoPersona").value,
+    "movil_contacto": document.getElementById("movilPersona").value,
+    "nombreContactoEmergencia": document.getElementById("nombreContacto").value,
+    "telefonoContactoEmergencia": document.getElementById("telefonoContacto").value,
+    "provincia": document.getElementById("provincia").value,
+    "municipio": document.getElementById("municipio").value,
+    "sector": document.getElementById("sector").value,
+    "latitud": " ",
+    "longitud": " " 
+    }
+
+         let url = 'http://127.0.0.1:7000/api/formulario/';
+        // const token = localStorage.getItem('token');
+
+
+        fetch(url, {
+          method: 'POST', // or 'PUT'
+          body: JSON.stringify(form), // data can be `string` or {object}!
+          headers:{
+            'Content-Type': 'application/json'
+          }
+
+        }).then(res => res.json())
+                .catch(error => { console.error('Error:', error); })
+                .then(response => {
+                  //console.log("response.status:"+response.status);
+                  //console.log("response.ok:"+response.ok);
+
+                  console.log('Success:', response);
+                  if(response != undefined){
+                    alert("El formulario ha sido guardado exitosamente.");
+                  }
+                  window.location.href = "/";
+                });
+            });     
+            }
+</script>
 
 </body>
 </html>

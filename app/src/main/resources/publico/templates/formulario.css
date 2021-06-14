@@ -255,7 +255,16 @@ color: #000000;
     object-fit: cover
 }
 
-#buttonEnviar {
+#sendButtonCreate {
     width: 75%;
-    height: 15px;
+    background: #18A0FB;
+    font-weight: bold;
+    color: black;
+    border: 0 none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+   align-items: center;
+
 }
