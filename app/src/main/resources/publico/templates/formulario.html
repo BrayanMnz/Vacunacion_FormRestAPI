@@ -19,8 +19,8 @@
     
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
-                <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="background-color: #AD0000;">
+            <div class="col-14 col-sm-11 col-md-9 col-lg-8 col-xl-7 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-5 pb-0 mt-3 mb-3" style="background-color: #AD0000;">
                     <h2 id="heading">Agenda tu cita de Vacunaci&Oacute;n</h2>
             
                     <form id="msform">
@@ -29,7 +29,8 @@
                             <li class="active" id="account"><strong>Personal</strong></li>
                             <li id="personal"><strong>Contactos</strong></li>
                             <li id="payment"><strong>Ubicaci&oacute;n</strong></li>
-                            <li id="confirm"><strong>Finish</strong></li>
+                            <li id="cormobilidades"><strong>Cormobilidades</strong></li>
+                            <li id="confirm"><strong>Otra Cosa</strong></li>
                         </ul>
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -139,13 +140,35 @@
                              -->
                                 </div> 
                             
-                            <input type="button" name="next" class="next action-button" value="Enviar" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
-                                    <div class="col-7">
-                                        <h2 class="fs-title">Finish:</h2>
+                                    <div class="col-12">
+                                        <h2 class="fs-title">Enfermedades padecidas:</h2>
+                                    </div>
+                                    <div class="col-5">
+                                        <!-- <h2 class="steps">Step 4 - 4</h2> -->
+                                    </div>
+                                </div> <br><br>
+                               
+                                <div class="row justify-content-center">
+                                    <!-- <div class="col-3"> <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"> </div> -->
+                                </div> <br><br>
+                                <div class="row justify-content-center">
+                                    
+                                </div>
+                            </div>
+
+                            <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="fs-title">Otra cosa:</h2>
                                     </div>
                                     <div class="col-5">
                                         <!-- <h2 class="steps">Step 4 - 4</h2> -->
@@ -251,20 +274,8 @@ return false;
 
 
 <script>
-       /*
-        let form = {
-          "name": "gomez",
-          "lastName": "1",
-          "area": "1",
-          "nivelEscolar": "Básico",
-          "user": "admin",
-          "latitude": 19.4436952,
-          "longitude": -70.68114969999999,
-          "photo": "foto"
-        };
-         */
-
-         if (document.getElementById("sendButtonCreate") != null) {
+      
+     if (document.getElementById("sendButtonCreate") != null) {
       document.getElementById("sendButtonCreate").addEventListener("click",function (event) {
         event.preventDefault();
 
