@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Draggable Marker</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
+
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
+
+<script src="https://tiles.locationiq.com/v3/libs/gl-geocoder/4.5.1/locationiq-gl-geocoder.min.js?v=0.2.3"></script>
+<link rel="stylesheet" href="https://tiles.locationiq.com/v3/libs/gl-geocoder/4.5.1/locationiq-gl-geocoder.css?v=0.2.3" type="text/css" />
+
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 400px;
+            height: auto;
+        }
+
+
+
+
+
+        /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% ; /* 15% from the top and centered */
+  margin-bottom: 15%;
+  padding: 10px;
+  border: 1px solid #888;
+  width: 100%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+<!-- <style>
+        .marker {
+            display: block;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            color: red;
+
+        }
+
+        .coordinates {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            padding: 5px 10px;
+            margin: 0;
+            font-size: 14px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+        }
+    </style>
+<div id="map"></div>
+<pre id="coordinates" class="coordinates"></pre>
+<script>
+        //Add your LocationIQ Maps Access Token here (not the API token!)
+        locationiqKey = 'pk.7f0e86d94a7ca47518d03b78918b8d2f';
+        
+        var coordinates = document.getElementById('coordinates');
+        
+        //Define the map and configure the map's theme
+        var map = new mapboxgl.Map({
+            container: 'map',
+            center: [-70.69774519746171,  19.48207554529158], 
+            style: 'https://tiles.locationiq.com/v3/streets/vector.json?key='+locationiqKey,
+            zoom: 12,
+            center: [-70.69774519746171,  19.48207554529158],
+            
+        });
+            
+        // First create DOM element for the marker
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.id = 'marker';
+        // Set marker properties using JS
+        el.style.backgroundImage = 'url(map-marker-icon.png)';
+
+        var marker = new mapboxgl.Marker(el, {
+            draggable: true
+        }).setLngLat([-70.70085194788612, 19.470279115501864])
+          .addTo(map);
+          
+        // After the mouse is released the following function is executed which updates the displayed lat and long
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML =
+                'Latitude: ' + lngLat.lat + '<br />Longitude: ' + lngLat.lng;
+            console.log(lngLat.lat + ' '+lngLat.lng);
+        }
+
+        marker.on('dragend', onDragEnd);
+    </script> -->
+
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content" id="map">
+    <span class="close">&times;</span>
+    <style>
+        .marker {
+            display: block;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            color: red;
+
+        }
+
+        .coordinates {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            padding: 5px 10px;
+            margin: 0;
+            font-size: 14px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+        }
+    </style>
+<pre id="coordinates" class="coordinates"></pre>
+<script>
+    //Add your LocationIQ Maps Access Token here (not the API token!)
+    locationiqKey = 'pk.7f0e86d94a7ca47518d03b78918b8d2f';
+    //Define the map and configure the map's theme
+    var map = new mapboxgl.Map({
+        container: 'map',
+        attributionControl: false, //need this to show a compact attribution icon (i) instead of the whole text
+        style: 'https://tiles.locationiq.com/v3/streets/vector.json?key='+locationiqKey,
+        zoom: 12,
+        center: [-122.42, 37.779]
+    });
+    
+    //Add Geocoder control to the map
+    map.addControl(new MapboxGeocoder({
+        accessToken: locationiqKey,
+        mapboxgl: mapboxgl,
+        limit: 5,
+        dedupe: 1,
+        marker: {
+            color: 'red',
+            draggable: true
+        },
+        flyTo: {
+            screenSpeed: 7,
+            speed: 4
+        }
+    }), 'top-left');
+
+    
+    console.log(marker.getLngLat());
+
+</script>
+<!-- <script>
+        //Add your LocationIQ Maps Access Token here (not the API token!)
+        locationiqKey = 'pk.7f0e86d94a7ca47518d03b78918b8d2f';
+        
+        var coordinates = document.getElementById('coordinates');
+        
+        //Define the map and configure the map's theme
+        var map = new mapboxgl.Map({
+            container: 'map',
+            center: [-70.69774519746171,  19.48207554529158], 
+            style: 'https://tiles.locationiq.com/v3/streets/vector.json?key='+locationiqKey,
+            zoom: 12,
+            center: [-70.69774519746171,  19.48207554529158],
+            
+        });
+            
+        // First create DOM element for the marker
+        var el = document.createElement('div');
+        el.className = 'marker';
+        el.id = 'marker';
+        // Set marker properties using JS
+        el.style.backgroundImage = 'url(map-marker-icon.png)';
+
+        var marker = new mapboxgl.Marker(el, {
+            draggable: true
+        }).setLngLat([-70.70085194788612, 19.470279115501864])
+          .addTo(map);
+          
+        // After the mouse is released the following function is executed which updates the displayed lat and long
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            coordinates.style.display = 'block';
+            coordinates.innerHTML =
+                'Latitude: ' + lngLat.lat + '<br />Longitude: ' + lngLat.lng;
+            console.log(lngLat.lat + ' '+lngLat.lng);
+        }
+
+        marker.on('dragend', onDragEnd);
+    </script> -->
+
+  </div>
+
+</div>
+
+<script>
+    // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Cita de vacunaci&oacute;n</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="colorlib.com">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="image-holder">
+				<img src="images/vaccine_1.png" alt="">
+			</div>
+            <form action="">
+            	<div id="wizard">
+            		<!-- SECTION 1 -->
+	                <h4></h4>
+	                <section>
+	                    <div class="form-row ">
+	                    	<div class="form-holder">
+	                    		<label for="">
+								Documento de Identificaci&oacute;n: 
+		                    	</label>
+	                    		<input type="text" id="id_persona" name="id_persona" placeholder="000-0000000-0" class="form-control">
+	                    	</div>
+	                    	
+	                    </div>	
+	                    <div class="form-row">
+	                    	<label for="">
+	                    		Nombre Completo
+	                    	</label>
+	                    	<input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Brayan Mu&nacute;oz V."  class="form-control">
+	                    </div>	
+	                    <div class="form-row">
+	                    	<label for="">
+	                    		Fecha Nacimiento
+	                    	</label>
+	                    	<div class="form-holder">
+	                    		<input type="date" id="fechaNacimiento" name="fechaNacimiento" class="form-control"
+                                  value="2000-01-01"
+                                  min="1900-01-01" max="2021-12-31"><br>
+								<!-- <i class="zmdi zmdi-caret-down"></i> -->
+	                    	</div>
+	                    </div>	
+	                    <div class="form-row">
+	                    	<label for="">
+	                    		Sexo
+	                    	</label>
+	                    	<select id="sexoPersona" name="sexoPersona" class="form-control">
+								<option value="M" class="option">Masculino</option>
+								<option value="F" class="option">Femenino</option>
+								<i class="zmdi zmdi-caret-down"></i>
+							</select>
+							
+	                    </div>	
+	                   
+	                </section>
+	                
+					<!-- SECTION 2 -->
+	                <h4></h4>
+	                <section>
+	                	<div class="form-row">
+	                    	<label for="">
+	                    		Correo Electr&oacute;nico
+	                    	</label>
+	                    	<input type="email" id="emailPersona" name="emailPersona" placeholder="brayanmnz@hotmail.com"  class="form-control">
+	                    </div>
+						<div class="form-row">
+	                    	<label for="">
+	                    		Tel&eacute;fono
+	                    	</label>
+	                    	<input type="tel" id="telefonoPersona" name="telefonoPersona" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="000-000-0000" required class="form-control">
+	                    </div>
+	                    <div class="form-row ">
+	                    	<div class="form-holder">
+	                    		<label for="">
+								M&oacute;vil 
+		                    	</label>
+	                    		<input  type="tel" id="movilPersona" name="movilPersona" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="000-000-0000" required class="form-control">
+	                    	</div>
+	                    	
+	                    </div>	
+
+						<hr class="solid">
+
+						<h2 >Contacto de Emergencia</h2>
+						<br>
+	                    <div class="form-row" style="margin-bottom: 18px">
+	                    	<label for="">
+	                    		Nombre Completo
+	                    	</label>
+							<input type="text" name="nombreContacto" id="nombreContacto" placeholder="Brayan Mu&nacute;oz" class="form-control">
+	                    </div>
+
+						<div class="form-row" style="margin-bottom: 18px">
+	                    	<label for="">
+	                    		Tel&eacute;fono
+	                    	</label>
+							<input type="tel" id="telefonoContacto" name="telefonoContacto" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="000-000-0000" required class="form-control">
+	                    </div>
+						
+						<!-- <div class="checkbox">
+							<label>
+								<input type="checkbox"> Create an account?
+								<span class="checkmark"></span>
+							</label>
+						</div> -->
+	                </section>
+
+	                <!-- SECTION 3 -->
+	                <h4></h4>
+	                <section>
+	                    <div class="form-row">
+	                    	<label for="">
+	                    		Provincia
+	                    	</label>
+							<select id="provincia" name="provincia" placeholder="Provincia" class="form-control" onchange="cargarMunicipios()">
+															
+							</select>
+	                    </div>
+						<div class="form-row">
+	                    	<label for="">
+	                    		Municipio 
+	                    	</label>
+							<select id="municipios" name="municipios" placeholder="Municipios" class="form-control" onchange="cargarDistritos()">
+																
+							</select>
+	                    	
+	                    </div>
+	                    <div class="form-row ">
+	                    	<div class="form-holder">
+	                    		<label for="">
+								Distrito Municipal 
+		                    	</label>
+	                    		<select id="distmunicipal" name="distmunicipal" placeholder="Distrito Municipal" class="form-control" >
+																		
+								</select>
+	                    	</div>
+	                    	
+	                    </div>	
+
+						<br>
+						<hr>
+						<br>
+						<div class="form-row ">
+	                    	<div class="form-holder">
+	                    		<label for="">
+								Ubicaci&oacute;n
+		                    	</label>
+
+	                    		<iframe src="https://maps.google.com/maps?q=0, 0&z=15&output=embed" frameborder="0"
+               					 style="border:0; width: 100%; height: 290px;" allowfullscreen id="map"></iframe>
+									<input type="text" class="form-control form-control-user"
+									id="ubicacionCentro" placeholder="Ubicaci&oacute;n " disabled>
+								</div>
+	                    	
+	                    </div>
+
+	                </section>
+
+	                <!-- SECTION 4 -->
+	                <h4></h4>
+	                <section>
+	                    <div class="checkbox-circle">
+							<label class="active">
+								<input type="radio" name="afeccion" value="1" >Cancer
+								<span class="checkmark"></span>
+								<div class="tooltip">
+
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="2" >Enfermedad renal cr&oacute;nica
+								<span class="checkmark"></span>
+								<div class="tooltip">
+
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="3" >Enfermedades pulmonares cr&oacute;nicas
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="4" >Demencia, Alzheimer u Otras afecciones neurol&oacute;gicas
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="5" >Diabetes tipo 1 o Diabetes tipo 2
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="6" >
+								S&iacute;ndrome de Down
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="7" >
+								Insuficiencia cardiaca, Miocardiopat&iacute;as, hipertensi&oacute;n
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="8" >
+								VIH
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="9" >
+								Sistema inmunitario debilitado
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="10" >
+								Enfermedad hep&aacute;tica
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="11" >
+								Sobrepeso y obesidad
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="12" >
+								Embarazo
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="13" >
+								Consumo de tabaco
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="14" >
+								Trasplante de &oacute;rganos o Trasplante de c&eacute;lulas madre
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="15" >
+								Accidente o enfermedad cerebrovascular
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									
+								</div>
+							</label>
+							<label>
+								<input type="radio" name="afeccion" value="16" >
+								Uso de sustancias
+								<span class="checkmark"></span>
+								<div class="tooltip">
+									Trastornos por el uso de alcohol, opioides o coca&iacute;na
+								</div>
+							</label>
+						</div>
+	                </section>
+            	</div>
+
+				<input type="text" class=""
+				id="latitud" placeholder="" disabled hidden>
+		
+				<input type="text" class=""
+				id="longitud" placeholder="" disabled hidden>
+            </form>
+		</div>
+
+		<script src="js/jquery-3.3.1.min.js"></script>
+		
+		<!-- JQUERY STEP -->
+		<script src="js/jquery.steps.js"></script>
+
+		<script src="js/main.js"></script>
+<!-- Template created and distributed by Colorlib -->
+
+
+<script>
+	var prov = [];
+	fetch('http://provinciasrd.raydelto.org/provincias')
+	.then((resp) => resp.json())
+	.then(function(data) {
+  	// var provincias = data;
+	//   console.log(provincias.data[0].nombre); 
+	//   console.log(provincias.data[0].codigo); 
+	let select = document.querySelector("#provincia")
+	let auxOption = document.createElement("option");
+        auxOption.selected = "selected";
+        auxOption.text = "Provincias";
+        auxOption.value = "Provincia";
+        select.appendChild(auxOption);
+	for (let i =0; i<data.data.length; i++){
+	  let option = document.createElement("option");
+	  option.text = data.data[i].nombre;
+	  option.value = data.data[i].codigo;
+	  select.appendChild(option);
+	//   prov.push({
+	// 	"codigo":  data.data[i].codigo,
+	// 	"nombre":  data.data[i].nombre
+	//   })
+	}
+
+
+})
+.catch(function(error) {
+  console.log(error);
+});
+	 
+
+function cargarMunicipios(){
+var provincia = document.getElementById("provincia").value;
+
+
+	var municipios = [];
+	fetch(`http://provinciasrd.raydelto.org/provincias/${provincia}/municipios`)
+	.then((resp) => resp.json())
+	.then(function(data) {
+  
+	document.getElementById("municipios").options.length = 0;
+	let select = document.querySelector("#municipios")
+	let auxOption = document.createElement("option");
+        auxOption.selected = "selected";
+        auxOption.text = "Municipios";
+        auxOption.value = "Municipios";
+        select.appendChild(auxOption);
+	for (let i =0; i<data.data.length; i++){
+	  let option = document.createElement("option");
+	  option.text = data.data[i].nombre;
+	  option.value = data.data[i].codigo;
+	  select.appendChild(option);
+	  
+	}
+
+
+})
+.catch(function(error) {
+  console.log(error);
+});
+
+}
+
+
+function cargarDistritos(){
+var municipio = document.getElementById("municipios").value;
+
+
+	
+	fetch(`http://provinciasrd.raydelto.org/municipios/${municipio}/distritos_municipales`)
+	.then((resp) => resp.json())
+	.then(function(data) {
+  
+	document.getElementById("distmunicipal").options.length = 0;
+	let select = document.querySelector("#distmunicipal")
+	let auxOption = document.createElement("option");
+        auxOption.selected = "selected";
+        auxOption.text = "Distritos";
+        auxOption.value = "Distrito";
+        select.appendChild(auxOption);
+	for (let i =0; i<data.data.length; i++){
+	  let option = document.createElement("option");
+	  option.text = data.data[i].nombre;
+	  option.value = data.data[i].codigo;
+	  select.appendChild(option);
+	  
+	}
+
+
+})
+.catch(function(error) {
+  console.log(error);
+});
+
+}
+</script>
+
+
+<script>
+      
+	if (document.getElementById("sendButtonCreate") != null) {
+	 document.getElementById("sendButtonCreate").addEventListener("click",function (event) {
+	   event.preventDefault();
+
+
+	 let form  = {
+   "descripcion_Formulario": "Probando desde cliente",
+   "dni_persona": document.getElementById("id_persona").value,
+   "nombreCompleto_persona": document.getElementById("nombreCompleto").value,
+   "fechaNacimiento_persona": document.getElementById("fechaNacimiento").value,
+   "sexo_persona": document.getElementById("sexoPersona").value,
+   "email_contacto": document.getElementById("emailPersona").value,
+   "telefono_contacto": document.getElementById("telefonoPersona").value,
+   "movil_contacto": document.getElementById("movilPersona").value,
+   "nombreContactoEmergencia": document.getElementById("nombreContacto").value,
+   "telefonoContactoEmergencia": document.getElementById("telefonoContacto").value,
+   "provincia": document.getElementById("provincia").value,
+   "municipio": document.getElementById("municipios").value,
+   "sector": document.getElementById("distmunicipal").value,
+   "latitud": " ",
+   "longitud": " " 
+   }
+
+		let url = 'http://127.0.0.1:7000/api/formulario/';
+	   // const token = localStorage.getItem('token');
+
+
+	   fetch(url, {
+		 method: 'POST', // or 'PUT'
+		 body: JSON.stringify(form), // data can be `string` or {object}!
+		 headers:{
+		   'Content-Type': 'application/json'
+		 }
+
+	   }).then(res => res.json())
+			   .catch(error => { console.error('Error:', error); })
+			   .then(response => {
+				 //console.log("response.status:"+response.status);
+				 //console.log("response.ok:"+response.ok);
+
+				 console.log('Success:', response);
+				 if(response != undefined){
+				   alert("El formulario ha sido guardado exitosamente.");
+				 }
+				 window.location.href = "/";
+			   });
+		   });     
+		   }
+</script>
+
+
+<script> 
+
+	var id, cantidad = 0;
+	
+	var opcionesGPS = {
+		enableHighAccuracy: true,
+		timeout: 1000,
+		maximumAge: 0
+	}
+	
+	
+	$(document).ready(setearLocalizacion());
+	
+	function setearLocalizacion() {
+	
+	
+		//Obteniendo la referencia directa.
+		navigator.geolocation.getCurrentPosition(
+		function(geodata){
+			var coordenadas = geodata.coords;
+			document.getElementById("map").src = "https://maps.google.com/maps?q=" + coordenadas.latitude + ", " +coordenadas.longitude +
+	   "&z=15&output=embed"; 11
+
+	   document.getElementById("ubicacionCentro").value = coordenadas.latitude + ' , '+coordenadas.longitude;
+	   		document.querySelector("#latitud").value = coordenadas.latitude;
+			document.getElementById("longitud").value = coordenadas.longitude;
+		}, 
+	
+		function(){
+			document.querySelector("#ubicacionCentro").value = "Error al obtener la ubicación. Codigo: "+error.code+", mensaje: "+error.message;
+			// document.querySelector("#longitud").value = "Error al obtener la ubicación";
+		}, 
+		opcionesGPS);
+	
+		//Obteniendo el cambio de referencia.
+		id = navigator.geolocation.watchPosition(
+	
+		function(geodata){
+			var coordenadas = geodata.coords;
+			document.getElementById("map").src = "https://maps.google.com/maps?q=" + coordenadas.latitude + " , " +coordenadas.longitude +
+	   "&z=15&output=embed";
+
+	   document.getElementById("ubicacionCentro").value = coordenadas.latitude + ' , '+coordenadas.longitude;1
+			document.querySelector("#latitud").value = coordenadas.latitude;
+			document.querySelector("#longitud").value = coordenadas.longitude;
+			cantidad++;
+			if(cantidad>=5){
+				navigator.geolocation.clearWatch(id);
+				console.log("Finalizando la trama")
+			}
+		},
+	
+		function(error){
+			//recibe un objeto con dos propiedades: code y message.
+			document.querySelector("#ubicacionCentro").value = "Error al obtener la ubicación. Codigo: "+error.code+", mensaje: "+error.message;
+			// document.querySelector("#longitud").value = "Error al obtener la ubicación. Codigo: "+error.code+", mensaje: "+error.message;
+		});
+	}
+	
+		</script>
+	
+
+
+</body>
+</html>
