@@ -14,7 +14,7 @@ public class Main {
         //Creando la instancia del servidor.
         Javalin app = Javalin.create(config ->{
             // config.addStaticFiles("/publico"); //desde la carpeta de resources
-            config.addStaticFiles("src/main/resources/publico/templates", Location.EXTERNAL);
+            config.addStaticFiles("src/main/resources/publico", Location.EXTERNAL);
             config.enableCorsForAllOrigins();
         });
 

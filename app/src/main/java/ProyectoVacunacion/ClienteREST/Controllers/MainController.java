@@ -16,7 +16,7 @@ public class MainController extends BaseControlador {
 
         app.get("/", ctx -> {
 
-            ctx.render("/publico/templates/formulario.html");
+            ctx.render("/publico/index.html");
         });
 
         app.get("/create-form", ctx -> {
