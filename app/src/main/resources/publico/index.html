@@ -116,7 +116,7 @@
 	                <!-- SECTION 3 -->
 	                <h4></h4>
 	                <section>
-	                    <div class="form-row">
+	                    <!-- <div class="form-row">
 	                    	<label for="">
 	                    		Provincia
 	                    	</label>
@@ -143,7 +143,7 @@
 								</select>
 	                    	</div>
 	                    	
-	                    </div>	
+	                    </div>	 -->
 
 						<br>
 						<hr>
@@ -313,35 +313,35 @@
 
 
 <script>
-	var prov = [];
-	fetch('http://provinciasrd.raydelto.org/provincias')
-	.then((resp) => resp.json())
-	.then(function(data) {
-  	// var provincias = data;
-	//   console.log(provincias.data[0].nombre); 
-	//   console.log(provincias.data[0].codigo); 
-	let select = document.querySelector("#provincia")
-	let auxOption = document.createElement("option");
-        auxOption.selected = "selected";
-        auxOption.text = "Provincias";
-        auxOption.value = "Provincia";
-        select.appendChild(auxOption);
-	for (let i =0; i<data.data.length; i++){
-	  let option = document.createElement("option");
-	  option.text = data.data[i].nombre;
-	  option.value = data.data[i].codigo;
-	  select.appendChild(option);
-	//   prov.push({
-	// 	"codigo":  data.data[i].codigo,
-	// 	"nombre":  data.data[i].nombre
-	//   })
-	}
+// 	var prov = [];
+// 	fetch('http://provinciasrd.raydelto.org/provincias')
+// 	.then((resp) => resp.json())
+// 	.then(function(data) {
+//   	// var provincias = data;
+// 	//   console.log(provincias.data[0].nombre); 
+// 	//   console.log(provincias.data[0].codigo); 
+// 	let select = document.querySelector("#provincia")
+// 	let auxOption = document.createElement("option");
+//         auxOption.selected = "selected";
+//         auxOption.text = "Provincias";
+//         auxOption.value = "Provincia";
+//         select.appendChild(auxOption);
+// 	for (let i =0; i<data.data.length; i++){
+// 	  let option = document.createElement("option");
+// 	  option.text = data.data[i].nombre;
+// 	  option.value = data.data[i].codigo;
+// 	  select.appendChild(option);
+// 	//   prov.push({
+// 	// 	"codigo":  data.data[i].codigo,
+// 	// 	"nombre":  data.data[i].nombre
+// 	//   })
+// 	}
 
 
-})
-.catch(function(error) {
-  console.log(error);
-});
+// })
+// .catch(function(error) {
+//   console.log(error);
+// });
 	 
 
 function cargarMunicipios(){
@@ -436,7 +436,7 @@ var municipio = document.getElementById("municipios").value;
    "longitud": " " 
    }
 
-		let url = 'http://127.0.0.1:7000/api/formulario/';
+		let url = 'http://40.114.9.115:7000/api/formulario/';q
 	   // const token = localStorage.getItem('token');
 
 

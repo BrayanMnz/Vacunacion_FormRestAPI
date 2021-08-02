@@ -1949,9 +1949,9 @@ var defaults = $.fn.steps.defaults = {
             "movil_contacto": document.getElementById("movilPersona").value,
             "nombreContactoEmergencia": document.getElementById("nombreContacto").value,
             "telefonoContactoEmergencia": document.getElementById("telefonoContacto").value,
-            "provincia": document.getElementById("provincia").value,
-            "municipio": document.getElementById("municipios").value,
-            "sector": document.getElementById("distmunicipal").value,
+            // "provincia": document.getElementById("provincia").value,
+            // "municipio": document.getElementById("municipios").value,
+            // "sector": document.getElementById("distmunicipal").value,
             "latitud": document.getElementById("latitud").value,
             "longitud": document.getElementById("longitud").value,
             "afeccion": document.querySelector('input[name="afeccion"]:checked').value
