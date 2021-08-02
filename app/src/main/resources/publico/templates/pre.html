@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
+
+<script src="https://tiles.locationiq.com/v3/libs/gl-geocoder/4.5.1/locationiq-gl-geocoder.min.js?v=0.2.3"></script>
+<link rel="stylesheet" href="https://tiles.locationiq.com/v3/libs/gl-geocoder/4.5.1/locationiq-gl-geocoder.css?v=0.2.3" type="text/css" />
+
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+
+
+<style> 
+.modal-dialog {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .modal-content {
+    height: auto;
+    min-height: 70%;
+    min-width: 90%;
+    border-radius: 0;
+    margin: 1px;
+  }
+
+  .marker {
+            display: block;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            color: red;
+
+        }
+
+        .coordinates {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            padding: 5px 10px;
+            margin: 0;
+            font-size: 14px;
+            line-height: 18px;
+            border-radius: 3px;
+            display: none;
+        }
+/* body {
+    margin: 0;
+    padding: 0;
+} */
+
+/* #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+    height: 500px;
+} */
+</style>
+
+</head>
+<body>
+    <pre id="coordinates" class="coordinates"></pre>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="setearLocalizacion()" >
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade bottom" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-height modal-bottom" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="map">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="text" class="" id="latitud" name="latitud" placeholder=""  hidden>
+
+  <input type="text" class="" name="longitud" id="longitud" placeholder=""  hidden>
+
+<!-- Script para obtener ubicación.   -->
+
+
+<script> 
+
+    var id, cantidad = 0;
+    
+    var opcionesGPS = {
+        enableHighAccuracy: true,
+        timeout: 1000,
+        maximumAge: 0
+    }
+    
+    
+    $(document).ready(setearLocalizacion());
+    
+    function setearLocalizacion() {
+    
+    
+        //Obteniendo la referencia directa.
+        navigator.geolocation.getCurrentPosition(
+        function(geodata){
+            var coordenadas = geodata.coords;
+            // document.getElementById("ubicacionCentro").value = coordenadas.latitude + ', '+coordenadas.longitude;
+            document.querySelector("#latitud").value = coordenadas.latitude;
+            document.getElementById("longitud").value = coordenadas.longitude;
+        }, 
+    
+        function(){
+            document.querySelector("#longitud").value = "Error al obtener la ubicación";
+            // document.querySelector("#longitud").value = "Error al obtener la ubicación";
+        }, 
+        opcionesGPS);
+    
+
+        //Obteniendo el cambio de referencia.
+        id = navigator.geolocation.watchPosition(
+    
+        function(geodata){
+            var coordenadas = geodata.coords;
+            // document.getElementById("ubicacionCentro").value = coordenadas.latitude + ', '+coordenadas.longitude;
+            document.querySelector("#latitud").value = coordenadas.latitude;
+            document.querySelector("#longitud").value = coordenadas.longitude;
+    
+            
+            cantidad++;
+            if(cantidad>=5){
+                navigator.geolocation.clearWatch(id);
+                console.log("Finalizando la trama")
+            }
+        },
+    
+        function(error){
+            //recibe un objeto con dos propiedades: code y message.
+            // document.querySelector("#ubicacionCentro").value = "Error al obtener la ubicación. Codigo: "+error.code+", mensaje: "+error.message;
+            document.querySelector("#longitud").value = "Error al obtener la ubicación. Codigo: "+error.code+", mensaje: "+error.message;
+        });
+    }
+    console.log(document.querySelector("#latitud").value);
+        console.log(document.querySelector("#longitud").value);
+        </script>
+
+
+
+
+
+
+<script>
+    //Add your LocationIQ Maps Access Token here (not the API token!)
+    locationiqKey = 'pk.7f0e86d94a7ca47518d03b78918b8d2f';
+    
+    var coordinates = document.getElementById('coordinates');
+    
+    //Define the map and configure the map's theme
+
+    console.log(document.querySelector("#latitud").value);
+    console.log(document.querySelector("#longitud").value);
+     
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        center: [document.querySelector("#longitud").value,  document.querySelector("#latitud").value], 
+        style: 'https://tiles.locationiq.com/v3/streets/vector.json?key='+locationiqKey,
+        zoom: 12,
+        
+        
+    });
+        
+    // First create DOM element for the marker
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.id = 'marker';
+    // Set marker properties using JS
+    el.style.backgroundImage = 'url(map-marker-icon.png)';
+
+    var marker = new mapboxgl.Marker(el, {
+        draggable: true
+    }).setLngLat([document.querySelector("#longitud").value, document.querySelector("#latitud").value])
+      .addTo(map);
+      
+    // After the mouse is released the following function is executed which updates the displayed lat and long
+    function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        coordinates.style.display = 'block';
+        coordinates.innerHTML =
+            'Latitude: ' + lngLat.lat + '<br />Longitude: ' + lngLat.lng;
+        console.log(lngLat.lat + ' '+lngLat.lng);
+    }
+
+    marker.on('dragend', onDragEnd);
+</script>
+
+</body>
+</html>
