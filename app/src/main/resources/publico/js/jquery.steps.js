@@ -1958,7 +1958,7 @@ var defaults = $.fn.steps.defaults = {
             }
          
             
-                 let url = 'http://40.114.9.115:7000/api/formulario/';
+                 let url = 'http://vacunacion.brayanmnz.live:7000/api/formulario/';
                 // const token = localStorage.getItem('token');
          
          
