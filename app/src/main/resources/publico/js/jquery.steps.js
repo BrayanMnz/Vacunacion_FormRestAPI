@@ -1958,7 +1958,7 @@ var defaults = $.fn.steps.defaults = {
             }
          
             
-                 let url = 'https://proyecto.brayanmnz.live/api/formulario/';
+                 let url = 'http://localhost:7000/api/formulario/';
                 // const token = localStorage.getItem('token');
          
          

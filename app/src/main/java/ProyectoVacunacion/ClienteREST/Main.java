@@ -4,6 +4,11 @@
 package ProyectoVacunacion.ClienteREST;
 
 import io.javalin.Javalin;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+
 import ProyectoVacunacion.ClienteREST.Controllers.*;
 import ProyectoVacunacion.ClienteREST.util.*;
 import io.javalin.http.staticfiles.Location;
@@ -11,6 +16,23 @@ import io.javalin.http.staticfiles.Location;
 public class Main {
 
     public static void main(String[] args) {
+
+        // String fecha = "1999-11-09";
+        // int anio = Integer.parseInt(fecha.substring(0, 4));
+        // int mes = Integer.parseInt(fecha.substring(5, 7));
+        // int dia = Integer.parseInt(fecha.substring(8, 10));
+       
+        // LocalDate today = LocalDate.now();                          //Today's date
+        // LocalDate birthday = LocalDate.of(1999, 11, 9);  //Birth date
+ 
+        // Period period = Period.between(birthday, today);
+ 
+        // //Now access the values as below
+        // System.out.println(period.getDays());
+        // System.out.println(period.getMonths());
+        // System.out.println(period.getYears());
+
+
         //Creando la instancia del servidor.
         Javalin app = Javalin.create(config ->{
             config.addStaticFiles("/publico"); //desde la carpeta de resources
