@@ -8,10 +8,15 @@ import io.javalin.Javalin;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
+import java.util.Calendar;
+import java.util.Date;
 
 import ProyectoVacunacion.ClienteREST.Controllers.*;
 import ProyectoVacunacion.ClienteREST.util.*;
 import io.javalin.http.staticfiles.Location;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -40,9 +45,35 @@ public class Main {
             config.enableCorsForAllOrigins();
         });
 
-        app.start(8000);
+       app.start(8000);
 
-        new MainController(app).aplicarRutas();
 
+    //     Date hoy = new Date();
+    //  //   Date manana = new Date(hoy.getTime() + (1000 * 60 * 60 * 24)); 
+    //     Date x = new Date();
+    //     Calendar hoys = Calendar.getInstance();
+    //     Calendar manana = Calendar.getInstance();
+    //     manana.add(Calendar.DAY_OF_MONTH, 1);
+
+    //     manana.setTime(x);
+    //    System.out.println(manana.get(Calendar.DAY_OF_MONTH));
+    //    System.out.println(hoys.get(Calendar.DAY_OF_MONTH));
+
+    //    System.out.println(manana.getTime().after(hoys.getTime()));
+
+
+    //     //hoys.getTime().before(when)
+
+    ScheduledExecutorService executorService;
+    executorService = Executors.newSingleThreadScheduledExecutor();
+    executorService.scheduleAtFixedRate(Main::run, 0, 60, TimeUnit.SECONDS);
+
+     //   new MainController(app).aplicarRutas();
+
+
+    }
+    private static void run() {
+        System.out.println("Running: " + new java.util.Date());
+        
     }
 }
