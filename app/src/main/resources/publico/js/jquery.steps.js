@@ -1938,6 +1938,11 @@ var defaults = $.fn.steps.defaults = {
      **/
     onFinished: function (event, currentIndex) { 
 
+        var select = document.getElementById('encuesta');
+		var option = select.options[select.selectedIndex];
+
+		console.log(option.value);
+
         let form  = {
             "descripcion_Formulario": "Probando desde cliente",
             "dni_persona": document.getElementById("id_persona").value,
@@ -1954,9 +1959,11 @@ var defaults = $.fn.steps.defaults = {
             // "sector": document.getElementById("distmunicipal").value,
             "latitud": document.getElementById("latitud").value,
             "longitud": document.getElementById("longitud").value,
-            "afeccion": document.querySelector('input[name="afeccion"]:checked').value
+            "afeccion": document.querySelector('input[name="afeccion"]:checked').value,
+            "ivr": option.value
             }
          
+            console.log(form);
             
                  let url = 'http://localhost:7000/api/formulario/';
                 // const token = localStorage.getItem('token');
@@ -2073,7 +2080,7 @@ var defaults = $.fn.steps.defaults = {
          * @default "Previous"
          * @for defaults
          **/
-        previous: "Previous",
+        previous: "Anterior",
 
         /**
          * Label for the loading animation.
