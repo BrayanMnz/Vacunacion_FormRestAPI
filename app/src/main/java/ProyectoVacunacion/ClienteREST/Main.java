@@ -14,6 +14,7 @@ import java.util.Date;
 import ProyectoVacunacion.ClienteREST.Controllers.*;
 import ProyectoVacunacion.ClienteREST.Models.Persona;
 import ProyectoVacunacion.ClienteREST.Services.PersonaServices;
+import ProyectoVacunacion.ClienteREST.Services.MailService;
 import ProyectoVacunacion.ClienteREST.util.*;
 import io.javalin.http.staticfiles.Location;
 import java.util.concurrent.Executors;
@@ -29,6 +30,7 @@ public class Main {
 
         Persona aux = serviciosPersona.find(1);
         System.out.println(aux.getNombreCompleto_persona());
+        MailService.sendMail(aux);
 
         // String fecha = "1999-11-09";
         // int anio = Integer.parseInt(fecha.substring(0, 4));
