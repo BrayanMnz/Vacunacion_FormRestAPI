@@ -79,5 +79,12 @@ public class PersonaServices extends GestionDb<Persona> {
     //     return null;
     // }
 
+    public List<Persona> PersonasForSurvey(){
+        EntityManager em = getEntityManager();
+        Query query = em.createNativeQuery("select P.* from PERSONA P where P.primeradosis = TRUE and encuestado = FALSE and ivr = FALSE ", Persona.class);
+        //query.setParameter("nombre", apellido+"%");
+        List<Persona> lista = query.getResultList();
+        return lista;
+    }
 
 }

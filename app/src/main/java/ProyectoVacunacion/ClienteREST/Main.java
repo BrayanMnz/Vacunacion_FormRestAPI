@@ -10,6 +10,7 @@ import java.time.Month;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import ProyectoVacunacion.ClienteREST.Controllers.*;
 import ProyectoVacunacion.ClienteREST.Models.Persona;
@@ -21,73 +22,49 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+
 public class Main {
 
     private static PersonaServices serviciosPersona = PersonaServices.getInstancia();
     private static String modoConexion = "";
+
     public static void main(String[] args) {
 
-
-        Persona aux = serviciosPersona.find(1);
-        System.out.println(aux.getNombreCompleto_persona());
-        MailService.sendMail(aux);
-
-        // String fecha = "1999-11-09";
-        // int anio = Integer.parseInt(fecha.substring(0, 4));
-        // int mes = Integer.parseInt(fecha.substring(5, 7));
-        // int dia = Integer.parseInt(fecha.substring(8, 10));
-       
-        // LocalDate today = LocalDate.now();                          //Today's date
-        // LocalDate birthday = LocalDate.of(1999, 11, 9);  //Birth date
- 
-        // Period period = Period.between(birthday, today);
- 
-        // //Now access the values as below
-        // System.out.println(period.getDays());
-        // System.out.println(period.getMonths());
-        // System.out.println(period.getYears());
-
-
-        //Creando la instancia del servidor.
-        Javalin app = Javalin.create(config ->{
-            config.addStaticFiles("/publico"); //desde la carpeta de resources
-           // config.addStaticFiles("src/main/resources/publico", Location.EXTERNAL);
+        // Creando la instancia del servidor.
+        Javalin app = Javalin.create(config -> {
+            config.addStaticFiles("/publico"); // desde la carpeta de resources
+            // config.addStaticFiles("src/main/resources/publico", Location.EXTERNAL);
             config.enableCorsForAllOrigins();
         });
 
-       app.start(8000);
+        app.start(8000);
 
+        ScheduledExecutorService executorService;
+        executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.scheduleAtFixedRate(Main::run, 0, 60, TimeUnit.SECONDS);
 
-    //     Date hoy = new Date();
-    //  //   Date manana = new Date(hoy.getTime() + (1000 * 60 * 60 * 24)); 
-    //     Date x = new Date();
-    //     Calendar hoys = Calendar.getInstance();
-    //     Calendar manana = Calendar.getInstance();
-    //     manana.add(Calendar.DAY_OF_MONTH, 1);
-
-    //     manana.setTime(x);
-    //    System.out.println(manana.get(Calendar.DAY_OF_MONTH));
-    //    System.out.println(hoys.get(Calendar.DAY_OF_MONTH));
-
-    //    System.out.println(manana.getTime().after(hoys.getTime()));
-
-
-    //     //hoys.getTime().before(when)
-
-    ScheduledExecutorService executorService;
-    executorService = Executors.newSingleThreadScheduledExecutor();
-    executorService.scheduleAtFixedRate(Main::run, 0, 60, TimeUnit.SECONDS);
-
-     //   new MainController(app).aplicarRutas();
-
+        // new MainController(app).aplicarRutas();
 
     }
+
     private static void run() {
         System.out.println("Running: " + new java.util.Date());
-        
+        List<Persona> personas = serviciosPersona.PersonasForSurvey();
+
+        for (Persona persona : personas) {
+            try {
+                MailService.sendMail(persona);
+                persona.setEncuestado(true);
+                serviciosPersona.editar(persona);
+            } catch (Exception e) {
+                System.out.println("Mail not sent: "+e.getMessage());
+
+            }
+            
+        }
     }
 
-    public static String getModoConexion(){
+    public static String getModoConexion() {
         return modoConexion;
     }
 }
