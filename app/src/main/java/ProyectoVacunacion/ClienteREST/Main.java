@@ -12,6 +12,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import ProyectoVacunacion.ClienteREST.Controllers.*;
+import ProyectoVacunacion.ClienteREST.Models.Persona;
+import ProyectoVacunacion.ClienteREST.Services.PersonaServices;
 import ProyectoVacunacion.ClienteREST.util.*;
 import io.javalin.http.staticfiles.Location;
 import java.util.concurrent.Executors;
@@ -20,8 +22,13 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
+    private static PersonaServices serviciosPersona = PersonaServices.getInstancia();
     private static String modoConexion = "";
     public static void main(String[] args) {
+
+
+        Persona aux = serviciosPersona.find(1);
+        System.out.println(aux.getNombreCompleto_persona());
 
         // String fecha = "1999-11-09";
         // int anio = Integer.parseInt(fecha.substring(0, 4));

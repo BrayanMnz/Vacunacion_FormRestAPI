@@ -22,12 +22,8 @@ public class GestionDb<T> {
 
     public GestionDb(Class<T> claseEntidad) {
         if(emf == null) {
-            if(Main.getModoConexion().equalsIgnoreCase("Heroku")){
-                emf = getConfiguracionBaseDatos();
-            }else{
                 // emf = Persistence.createEntityManagerFactory("MiUnidadPersistencia");
                 emf = getConfiguracionBaseDatos();
-            }
         }
         this.claseEntidad = claseEntidad;
     }
