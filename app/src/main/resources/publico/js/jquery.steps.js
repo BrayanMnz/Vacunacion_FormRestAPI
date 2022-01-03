@@ -1965,7 +1965,7 @@ var defaults = $.fn.steps.defaults = {
          
             console.log(form);
             
-                 let url = 'https://40.114.9.115:7000/api/formulario/';
+                 let url = 'http://localhost:7000/api/formulario/';
                 // const token = localStorage.getItem('token');
          
          

@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
 
+    private static String modoConexion = "";
     public static void main(String[] args) {
 
         // String fecha = "1999-11-09";
@@ -75,5 +76,9 @@ public class Main {
     private static void run() {
         System.out.println("Running: " + new java.util.Date());
         
+    }
+
+    public static String getModoConexion(){
+        return modoConexion;
     }
 }
