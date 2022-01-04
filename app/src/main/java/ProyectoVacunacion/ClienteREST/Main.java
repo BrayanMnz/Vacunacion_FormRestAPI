@@ -41,7 +41,7 @@ public class Main {
 
         ScheduledExecutorService executorService;
         executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(Main::run, 0, 150, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(Main::run, 0, 100, TimeUnit.SECONDS);
 
         ScheduledExecutorService executorService1;
         executorService1 = Executors.newSingleThreadScheduledExecutor();
