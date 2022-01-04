@@ -78,8 +78,6 @@ public class Main {
         for (Persona persona : personas) {
             try {
                 MailService.sendMail(persona,false);
-                persona.setEncuestado(true);
-                serviciosPersona.editar(persona);
             } catch (Exception e) {
                 System.out.println("Mail not sent: "+e.getMessage());
 
