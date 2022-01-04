@@ -52,8 +52,7 @@ public class Persona implements Serializable {
 
     @Column Boolean mailSent;
 
-   
- 
+    @Column Boolean vaccineCardSent;
 
     @OneToOne
     @JoinColumn(name = "Ubicacion")
@@ -368,4 +367,18 @@ public class Persona implements Serializable {
     public void setMailSent(Boolean mailSent) {
         this.mailSent = mailSent;
     }
+
+
+    public Boolean isVaccineCardSent() {
+        return this.vaccineCardSent;
+    }
+
+    public Boolean getVaccineCardSent() {
+        return this.vaccineCardSent;
+    }
+
+    public void setVaccineCardSent(Boolean vaccineCardSent) {
+        this.vaccineCardSent = vaccineCardSent;
+    }
+   
 }

@@ -44,7 +44,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 public class MailService {
 
     public static void sendMail(Persona auxPersona) {
-        String mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para llenar la encuesta correspondiente a tu estado de salud luego de recibir tu vacuna accede al siguiente enlace: \n http://localhost:7000/Survey/"+auxPersona.getId_persona();
+        String mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para llenar la encuesta correspondiente a tu estado de salud luego de recibir tu vacuna accede al siguiente enlace: \n https://app.brayanmnz.live/Survey/"+auxPersona.getId_persona();
         
         String nombre = auxPersona.getNombreCompleto_persona();
 

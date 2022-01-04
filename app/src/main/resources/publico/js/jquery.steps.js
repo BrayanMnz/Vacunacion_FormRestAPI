@@ -1965,7 +1965,9 @@ var defaults = $.fn.steps.defaults = {
          
             console.log(form);
             
-                 let url = 'http://localhost:7000/api/formulario/';
+                // let url = 'http://localhost:7000/api/formulario/';
+                let url = 'https://app.brayanmnz.live/api/formulario/';
+                
                 // const token = localStorage.getItem('token');
          
          

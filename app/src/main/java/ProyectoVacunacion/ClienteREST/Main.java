@@ -49,6 +49,10 @@ public class Main {
 
     private static void run() {
         System.out.println("Running: " + new java.util.Date());
+
+        System.out.println(serviciosPersona.find(1).getNombreCompleto_persona());
+
+
         List<Persona> personas = serviciosPersona.PersonasForSurvey();
 
         for (Persona persona : personas) {
