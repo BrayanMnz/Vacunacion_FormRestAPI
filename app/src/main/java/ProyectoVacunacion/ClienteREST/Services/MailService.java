@@ -45,12 +45,17 @@ public class MailService {
 
     public static void sendMail(Persona auxPersona, Boolean option) {
             String mailText = " ";
+            String mailSubject = " ";
         if (option) {
             mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para llenar la encuesta correspondiente a tu estado de salud luego de recibir tu vacuna accede al siguiente enlace: \n https://app.brayanmnz.live/Survey/"+auxPersona.getId_persona();
+
+            mailSubject = "Encuesta en linea, seguimiento del Proceso de Vacunacion.";
         }
 
         if (!option) {
             mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para acceder a tu tarjeta de vacunacion digital haz click en ell siguiente enlace: \n\n https://app.brayanmnz.live/VaccineCard/"+auxPersona.getId_persona();
+
+            mailSubject = "Tarjeta de Vacunacion!";
         }
 
         
@@ -101,7 +106,7 @@ public class MailService {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Encuesta en linea, seguimiento del Proceso de Vacunacion.");
+            message.setSubject(mailSubject);
 
             // Now set the actual message
 

@@ -54,7 +54,7 @@ public class Main {
     private static void run() {
         System.out.println("Running: " + new java.util.Date());
 
-        List<Persona> personas = serviciosPersona.PersonasForSurvey();
+        List<Persona> personas = serviciosPersona.PersonasForSurvey(false);
 
         for (Persona persona : personas) {
             try {
@@ -73,7 +73,7 @@ public class Main {
     private static void sendDigitalCard() {
         System.out.println("Running: " + new java.util.Date());
 
-        List<Persona> personas = serviciosPersona.PersonasForSurvey();
+        List<Persona> personas = serviciosPersona.PersonasForSurvey(true);
 
         for (Persona persona : personas) {
             try {
