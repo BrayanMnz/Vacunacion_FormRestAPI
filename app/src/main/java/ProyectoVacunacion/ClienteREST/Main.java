@@ -45,7 +45,7 @@ public class Main {
 
         ScheduledExecutorService executorService1;
         executorService1 = Executors.newSingleThreadScheduledExecutor();
-        executorService1.scheduleAtFixedRate(Main::run, 0, 60, TimeUnit.SECONDS);
+        executorService1.scheduleAtFixedRate(Main::sendDigitalCard, 0, 60, TimeUnit.SECONDS);
 
         // new MainController(app).aplicarRutas();
 
