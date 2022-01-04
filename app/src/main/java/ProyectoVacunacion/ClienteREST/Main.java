@@ -41,7 +41,11 @@ public class Main {
 
         ScheduledExecutorService executorService;
         executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(Main::run, 0, 60, TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(Main::run, 0, 150, TimeUnit.SECONDS);
+
+        ScheduledExecutorService executorService1;
+        executorService1 = Executors.newSingleThreadScheduledExecutor();
+        executorService1.scheduleAtFixedRate(Main::run, 0, 60, TimeUnit.SECONDS);
 
         // new MainController(app).aplicarRutas();
 
@@ -50,14 +54,11 @@ public class Main {
     private static void run() {
         System.out.println("Running: " + new java.util.Date());
 
-        System.out.println(serviciosPersona.find(1).getNombreCompleto_persona());
-
-
         List<Persona> personas = serviciosPersona.PersonasForSurvey();
 
         for (Persona persona : personas) {
             try {
-                MailService.sendMail(persona);
+                MailService.sendMail(persona,true);
                 persona.setEncuestado(true);
                 serviciosPersona.editar(persona);
             } catch (Exception e) {
@@ -67,6 +68,31 @@ public class Main {
             
         }
     }
+
+
+    private static void sendDigitalCard() {
+        System.out.println("Running: " + new java.util.Date());
+
+        List<Persona> personas = serviciosPersona.PersonasForSurvey();
+
+        for (Persona persona : personas) {
+            try {
+                MailService.sendMail(persona,false);
+                persona.setEncuestado(true);
+                serviciosPersona.editar(persona);
+            } catch (Exception e) {
+                System.out.println("Mail not sent: "+e.getMessage());
+
+            }
+            
+        }
+    }
+
+
+
+
+
+
 
     public static String getModoConexion() {
         return modoConexion;

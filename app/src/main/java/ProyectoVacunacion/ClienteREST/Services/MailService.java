@@ -43,8 +43,17 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 public class MailService {
 
-    public static void sendMail(Persona auxPersona) {
-        String mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para llenar la encuesta correspondiente a tu estado de salud luego de recibir tu vacuna accede al siguiente enlace: \n https://app.brayanmnz.live/Survey/"+auxPersona.getId_persona();
+    public static void sendMail(Persona auxPersona, Boolean option) {
+            String mailText = " ";
+        if (option) {
+            mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para llenar la encuesta correspondiente a tu estado de salud luego de recibir tu vacuna accede al siguiente enlace: \n https://app.brayanmnz.live/Survey/"+auxPersona.getId_persona();
+        }
+
+        if (!option) {
+            mailText = "Hola "+auxPersona.getNombreCompleto_persona().toUpperCase() +" para acceder a tu tarjeta de vacunacion digital haz click en ell siguiente enlace: \n\n https://app.brayanmnz.live/VaccineCard/"+auxPersona.getId_persona();
+        }
+
+        
         
         String nombre = auxPersona.getNombreCompleto_persona();
 
