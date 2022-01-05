@@ -83,7 +83,7 @@ public class PersonaServices extends GestionDb<Persona> {
         EntityManager em = getEntityManager();
         Query query = null;     
         if(iscard){
-             query = em.createNativeQuery("select P.* from PERSONA P where P.primeradosis = TRUE and encuestado = FALSE and ivr = TRUE ", Persona.class); 
+             query = em.createNativeQuery("select P.* from PERSONA P where P.primeradosis = TRUE and encuestado = FALSE ", Persona.class); 
         }
         if(!iscard){
              query = em.createNativeQuery("select P.* from PERSONA P where P.primeradosis = TRUE and encuestado = FALSE and ivr = FALSE ", Persona.class);
