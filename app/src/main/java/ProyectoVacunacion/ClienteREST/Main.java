@@ -52,7 +52,7 @@ public class Main {
     }
 
     private static void run() {
-        System.out.println("Running: " + new java.util.Date());
+        System.out.println("Running --> Send Survey:   " + new java.util.Date());
 
         List<Persona> personas = serviciosPersona.PersonasForSurvey(false);
 
@@ -71,18 +71,21 @@ public class Main {
 
 
     private static void sendDigitalCard() {
-        System.out.println("Running: " + new java.util.Date());
+        System.out.println("Running ---> send Digital Card:  " + new java.util.Date());
 
         List<Persona> personas = serviciosPersona.PersonasForSurvey(true);
-
+        
         for (Persona persona : personas) {
+            if(Boolean.FALSE.equals(persona.getVaccineCardSent()) || persona.getVaccineCardSent() == null) {
             try {
                 MailService.sendMail(persona,false);
+                persona.setVaccineCardSent(true);
+                serviciosPersona.editar(persona);
             } catch (Exception e) {
                 System.out.println("Mail not sent: "+e.getMessage());
 
             }
-            
+        }
         }
     }
 
